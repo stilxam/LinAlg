@@ -1,4 +1,4 @@
-<center><h1> Linear Algebra 2 Summary </h1>
+<center><h1> Linear Algebra Notes </h1>
 <u>Maxwell Litsios-Hilbert</u> </center>
 
 ## 1.1 Linear Maps
