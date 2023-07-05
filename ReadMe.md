@@ -114,7 +114,7 @@ $$ x = x_1 a_1 + ... + x_n a_n$$
 The numbers $x_1, ..., x_n$ are the coordinates of $x$ w.r.t. the basis $\alpha$, and $(x_1, ..., x_n)$ is the coordinate vector of $x$ w.r.t. basis $\alpha$.
 #### Property:
 If we choose a basis $\alpha$ in an $n$-dimensional vector space $V$, then the map sending each vector $x$ to its coordinates w.r.t. this basis is an invertible linear map from $V$ to $\mathbb{K}^n$.
-We will ususally denote this map also by $\alpha$. This shouldn't lead to confusion : $\alpha (x)$ is the coordinate vector of the vector $x \in V$ w.r.t. the basis $\alpha$.
+We will usually denote this map also by $\alpha$. This shouldn't lead to confusion : $\alpha (x)$ is the coordinate vector of the vector $x \in V$ w.r.t. the basis $\alpha$.
 
 ### Change of basis:
 Consider an $n$-dimensional vector space $V$ and choose for $V$ two bases:
@@ -128,7 +128,7 @@ Let $\alpha$ and $\beta$ be bases of an $n$-dimensional vector space $V$.
 The linear map $\beta \alpha ^{-1}: \mathbb{K}^n \rightarrow \mathbb{K}^n$ is called the *coordinate transformation (map)* from $\alpha$ to $\beta$
 
 ### Theorem (Transition Matrix):
-Let $\alpha$ and $\beta$ $n$-dimensional vectorspace $V$ and let $_{\beta} S_\alpha$ be the matrix of $\beta \alpha^{-1}$. If $x$ is the $\alpha$-coordinate vector of a vector $v \in V$, then the $\beta$-coordinate vector of $v$ is equal to $_{\beta} S_{\alpha} x$.
+Let $\alpha$ and $\beta$ $n$-dimensional vector space $V$ and let $_{\beta} S_\alpha$ be the matrix of $\beta \alpha^{-1}$. If $x$ is the $\alpha$-coordinate vector of a vector $v \in V$, then the $\beta$-coordinate vector of $v$ is equal to $_{\beta} S_{\alpha} x$.
 
 ### Definition (Transition Matrix):
 The matrix $_{\beta} S_{\alpha} x$ is called the transition matrix of the basis $\alpha$ to the basis $\beta$
@@ -137,7 +137,97 @@ This is done through $_{\alpha} S_{\beta} x$.
 $$_{\alpha} S_{\beta}  \circ_{\beta} S_{\alpha} = I$$
 $$_{\alpha} S_{\beta}  = _{\beta} S_{\alpha}^{-1} $$
 
+
+### Matrix of a Linear map:
+We now discuss how to describe a linear map between two finite dimensional vector spaces using a matrix.
+Let $V$ and $W$ be the aforementioned vector spaces over a field $\mathbb{K}$.
+Consider a linear map $A : V \rightarrow W$ .
+Let $\alpha$ be a basis for $V$ s.t. for $v \in V$, $\alpha (v) \in \mathbb{K}^n$
+Let $\beta$ be a basis for $W$ s.t. for $w \in W$, $\beta (w) \in \mathbb{K}^m$
+$$\beta A \alpha^{-1}: \mathbb K^{n} \rightarrow \mathbb K ^{m}$$
+
+### Theorem (Effect of Change of basis):
+Let V be a finitely dimensional space.
+Let it have the bases $\alpha$ and $\beta$ 
+Let $A$ be a linear map such that $A: V \rightarrow V$
+$$A_{\beta} = ._{\beta}S_{\alpha} A_\alpha ._\alpha S_\beta$$
+$$\beta A \beta^{-1} = (\beta \alpha^{-1}) (\alpha A \alpha ^{-1})(\alpha \beta^{-1})$$
+
+
 ## 1.4 Eigenvalues and Eigenvectors
+
+### Definition  (Diagonal Form):
+A square matrix has a *diagonal* form if $\forall{i,j | i\ne j }, a_{ij} = 0$ 
+This builds the following theorem
+### Theorem (Diagonalization of eigenvalues w.r.t. basis of eigenvectors):
+Let $A :V \rightarrow V$ be a linear map with $\alpha = \{a_1, ..., a_n\}$ as a basis.
+The matrix $A_{\alpha}$ must have the form 
+$$A_\alpha = 
+\begin{pmatrix}
+\lambda_{1}& 0 & ... & 0 \\
+0 &  \lambda_{2} & ... & 0 \\
+... & ... & ... &0 \\
+0 &  ... & 0 & \lambda_n 
+
+\end{pmatrix}
+\iff A a_i = \lambda_i a_i
+$$
+### Alternative Characterization:
+Let $A: V \rightarrow V$ be a linear map, $A_\alpha$  is in diagonal form $\iff$ $\alpha$ is a basis of eigenvectors.
+
+### Definition (Eigenvector and Eigenvalue):
+Let $A : V \rightarrow V$ be a linear map.
+A vector $v \ne 0$ is called eigenvector of $A$ with *eigenvalue* $\lambda$ if $A v = \lambda v$
+
+### Definition (Eigenspace):
+Consider $A : V \rightarrow V$.  For every $\lambda$ let $E_\lambda = N(A-\lambda I )$ 
+We call $E_\lambda$ the eigenspace of $A$ for $\lambda$
+
+### Theorem:
+$\lambda$ is an eigenvalue $\iff \det{(A-\lambda I)} = 0$ and the associated $\alpha$-coordinates of the corresponding eigenvectors are the solutions different from the zero solution of the following system :
+$$
+\begin{pmatrix}
+a_{11} & a_{12} & ... & a_{1n} \\
+a_{21} & a_{22} & ... & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & ... & a_{nn} \\
+\end{pmatrix}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+\vdots\\
+v_n \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0\\
+0\\
+\vdots\\
+0
+\end{pmatrix}
+
+$$
+### Definition (Characteristic Polynomial)
+
+Let $A : V \rightarrow V$ be a linear map.
+let $A_\alpha$ be the matrix A w.r.t. the basis $\alpha$.
+Then, $\det (A - \lambda I) =0$ is called the **characteristic equation** of A. The LHS of the equation is called the *characteristic polynomial* of $A$
+#### Note: Characteristic Equation is Independent From Basis.
+##### Proof:
+$$ \det(A_\beta - \lambda I) = \det( ._{\beta} S _{\alpha}  A_\alpha ._{\alpha}S_\beta - \lambda _{\beta} S _{\alpha}  I_\alpha ._{\alpha}S_\beta  )$$ $$
+ = \det(_{\beta} S _{\alpha}(A_\alpha - \lambda I)_{\alpha}S_\beta) 
+$$ $$
+= \det(_{\beta} S _{\alpha})\det(A_\alpha - \lambda I)\det(_{\alpha}S_\beta)$$
+$$\det(_{\beta} S _{\alpha}) = (\det(_{\alpha} S _{\beta}))^{-1} $$
+$$\therefore \det(A_\beta - \lambda I) = \det(A_\alpha -\lambda )$$
+
+### Definition (Matrix Trace):
+The sum of the diagonal elements of a square matrix is called its trace
+let $A \in \mathbb K ^{n \times n}$
+$$tr(A) = \sum_{i=1}^{n}{a_{ii}}$$
+### Theorem (Trace is Invariant Through Change of Basis):
+Let $A$ be a linear map s.t. $A: V \rightarrow V, dim(V) <\infty$ 
+for every $\alpha$, $tr(A_{\alpha})$ is the same
 
 ## 1.5 Invariant Subspaces
 
